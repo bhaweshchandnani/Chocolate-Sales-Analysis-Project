@@ -138,12 +138,8 @@ Analyzed chocolate sales data using Python, SQL and Power BI to understand sales
 Created an interactive dashboard and identified key business findings related to discounts, product revenue and country performance.
 
 ## Skills Demonstrated
-Pandas
-MySQL
-CTEs
-Joins
-Window Functions
-DAX
-Power BI
-Data Analysis
-Business Insights
+* Pandas
+* MySQL
+* Power BI
+* Data Analysis
+* Business Insights
