@@ -181,7 +181,7 @@ ORDER BY revenue DESC;
 
 #.............................................................highest revenue category
 
-SELECT p.category, SUM(s.revenue) as revenue, SUM(s.profit) AS profit, AVG(s.profit_margin) as pm
+SELECT p.category, SUM(s.revenue) as revenue, SUM(s.profit) AS profit, SUM(s.profit)/SUM(s.revenue) as pm
 FROM sales s
 INNER JOIN products p
 ON p.product_id = s.product_id
