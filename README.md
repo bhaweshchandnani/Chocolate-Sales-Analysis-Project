@@ -1,5 +1,5 @@
 # Chocolate-Sales-Analysis-Project
-Chocolate sales analysis using Pandas, MySQL and Power BI to understand sales, profit, discounts, products and country-wise performance.
+This project presents an interactive Power BI dashboard built using Python (Pandas), MySQL, and DAX to analyze multi-country chocolate sales data and uncover business performance trends. The analysis explores revenue, profit, and discount patterns across products, categories, and countries to support data-driven decision-making.
 
 ## Overview
 I used Python for basic data checking and preparation, SQL for analysis, and Power BI to create the dashboard and understand the business insights.
