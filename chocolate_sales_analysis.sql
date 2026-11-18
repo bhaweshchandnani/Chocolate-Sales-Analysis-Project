@@ -138,19 +138,22 @@ LIMIT 5;
 
 #.......................................top 10 products rev contribution................
 
-WITH ranks AS (
-SELECT
-	p.product_id, p.product_name, SUM(s.revenue) AS revenue,
-    RANK() OVER (ORDER BY SUM(s.revenue) DESC) as rev_rank
-	FROM sales s
-	INNER JOIN products p
-	ON p.product_id = s.product_id
-	GROUP BY p.product_name, p.product_id
+WITH product_rev AS (
+  SELECT p.product_name, SUM(s.revenue) AS revenue
+  FROM sales s
+  JOIN products p ON p.product_id = s.product_id
+  GROUP BY p.product_name
+),
+ranked AS (
+  SELECT product_name, revenue,
+         RANK() OVER (ORDER BY revenue DESC) AS rev_rank,
+         SUM(revenue) OVER () AS total_rev
+  FROM product_rev
 )
-SELECT SUM(revenue) as top10_revenue,
-	(SELECT SUM(revenue) FROM sales ) AS total_rev,
-    ROUND((SUM(revenue)/(SELECT SUM(revenue) FROM sales)) *100, 2) AS contr_pct
-    FROM ranks
+SELECT SUM(revenue) AS top10_revenue,
+       MAX(total_rev) AS total_rev,
+       ROUND(SUM(revenue) / MAX(total_rev) * 100, 2) AS contr_pct
+FROM ranked
 WHERE rev_rank <= 10;
 
 
